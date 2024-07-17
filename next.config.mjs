@@ -9,7 +9,6 @@ const nextConfig = {
       },
     ],
   },
-  // ↑↑追加↑↑
 };
 
 export default nextConfig;

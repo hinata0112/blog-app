@@ -11,7 +11,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
-  // ↑↑追加↑↑
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,13 +19,12 @@ export default function Home() {
     };
     fetchPosts();
   }, []);
-  // ↑↑追加↑↑
+
 
   return (
     <Layout>
       <Hero title="CUBE" subtitle="アウトプットしていくサイト" isImage />
       <Posts posts={posts} />
-      {/* ↑↑修正↑↑ */}
       <Pagenation nextvUrl="/blog" nextText="次の記事へ" />
     </Layout>
   );

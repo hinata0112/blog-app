@@ -26,7 +26,7 @@ const Posts: FC<Props> = ({ posts }) => {
                                     height={288}
                                     className="w-full"
                                 />
-                                {/* ↑↑修正↑↑ */}
+
                             </figure>
                             <h2 className="text-2xl font-normal">{title}</h2>
                         </Link>

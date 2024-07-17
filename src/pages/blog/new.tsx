@@ -10,20 +10,19 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 const Page = () => {
     const [categoryName, setCategoryName] = useState("");
-    // **** START [記事の追加フォームで使用する] ****
     const [categories, setCategories] = useState<Category[]>([]);
     const [categoryId, setCategoryId] = useState(0);
     const [postTitle, setPostTitle] = useState("");
     const [postBody, setPostBody] = useState("");
     const [postEyecatchUrl, setPostEyecatchUrl] = useState("");
-    // ↑↑追加↑↑
+
 
     const fetchCategories = async () => {
         const data = await selectCategories();
         setCategories([...data]);
         setCategoryId(data.length === 0 ? 0 : data[0].id);
     };
-    // **** END ****
+
 
     const onChangeCategoryName = (e: ChangeEvent<HTMLInputElement>) => {
         setCategoryName(e.target.value);
@@ -39,7 +38,6 @@ const Page = () => {
         fetchCategories();
     };
 
-    // **** START [記事の追加フォームで使用する] ****
     useEffect(() => {
         if (categoryName.length === 0) {
             fetchCategories();
@@ -53,12 +51,12 @@ const Page = () => {
     const onChangePosttitle = (e: ChangeEvent<HTMLInputElement>) => {
         setPostTitle(e.target.value);
     };
-    // ↑↑追加↑↑
+
 
     const onChangePostBody = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setPostBody(e.target.value);
     };
-    // ↑↑追加↑↑
+
 
     const onChangeEyecatch = async (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) {
@@ -74,7 +72,7 @@ const Page = () => {
             alert("アップロードに失敗しました");
         }
     };
-    // ↑↑追加↑↑
+
 
     const onSubmitInsertPost = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -96,8 +94,7 @@ const Page = () => {
             alert("記事の投稿に失敗しました");
         }
     };
-    // ↑↑追加↑↑
-    // **** END ****
+
 
     return (
         <Layout>
@@ -108,12 +105,10 @@ const Page = () => {
                         <div className="flex flex-col">
                             <label htmlFor="post-title">Post Title</label>
                             <input type="text" id="post-title" value={postTitle} onChange={onChangePosttitle} />
-                            {/* ↑↑value属性とonChange属性の追加↑↑ */}
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="post-body">Post Body</label>
                             <textarea id="post-body" value={postBody} onChange={onChangePostBody}></textarea>
-                            {/* ↑↑value属性とonChange属性の追加↑↑ */}
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="post-category">Post Category</label>
@@ -128,7 +123,6 @@ const Page = () => {
                         <div className="flex flex-col">
                             <label htmlFor="post-eyecatch">Post Eyecatch</label>
                             <input type="file" accept="image/*" id="post-eyecatch" onChange={onChangeEyecatch} />
-                            {/* ↑↑onChange属性の追加↑↑ */}
                         </div>
                         <div className="flex justify-center">
                             <input

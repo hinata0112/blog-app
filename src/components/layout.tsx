@@ -7,8 +7,8 @@ type Props = {
 };
 
 /**
- * 共通レイアウトのコンポーネント
- * @param {ReactNode} children レイアウトに埋め込むJSX
+ 共通レイアウトのコンポーネント
+ * @param {ReactNode} children 
  * @returns {JSX}
  */
 const Layout: FC<Props> = ({ children }) => {

@@ -6,7 +6,7 @@ import { selectCategories } from "@/utils/supabase";
 
 const PostCategory: FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
-    // ↑↑追加↑↑
+
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -15,7 +15,6 @@ const PostCategory: FC = () => {
         };
         fetchCategories();
     }, []);
-    // ↑↑追加↑↑
 
     return (
         <div className="flex flex-row lg:flex-col py-4 gap-4 w-full md:w-60 justify-start items-center lg:justify-center lg:items-end md:items-end">
@@ -25,7 +24,6 @@ const PostCategory: FC = () => {
                     <div>{name}</div>
                 </Link>
             ))}
-            {/* ↑↑修正↑↑ */}
         </div>
     );
 };

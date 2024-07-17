@@ -6,7 +6,6 @@ export const supabase = createClient(
 );
 
 /**
- * categoriesテーブルにカテゴリを追加する
  * @param categoryName カテゴリ名
  */
 export const insertCategory = async (categoryName: string) => {
@@ -15,12 +14,10 @@ export const insertCategory = async (categoryName: string) => {
 };
 
 /**
- * categoriesテーブルからデータを取得する
  * @returns Category[]
  */
 export const selectCategories = async () => {
     const { data, error } = await supabase.from("categories").select();
-    // console.log(data ? data : error);
     if (data) {
         return data.map((category) => ({ id: category.id, name: category.name }));
     } else {
@@ -29,8 +26,7 @@ export const selectCategories = async () => {
 };
 
 /**
- * thumbnailsバケットに画像をアップロードする
- * @param uploadFile アイキャッチ画像
+ * @param uploadFile 
  */
 export const uploadEyecatchImage = async (uploadFile: File) => {
     const { data, error } = await supabase.storage
@@ -45,11 +41,10 @@ export const uploadEyecatchImage = async (uploadFile: File) => {
 };
 
 /**
- * postsテーブルに記事を追加する
- * @param title 記事のタイトル
- * @param body 記事の本文
- * @param categoryId 記事のカテゴリID
- * @param eyecatchUrl 記事のアイキャッチ画像
+ * @param title 
+ * @param body 
+ * @param categoryId 
+ * @param eyecatchUrl 
  */
 export const insertPost = async (
     title: string,
@@ -69,7 +64,6 @@ export const insertPost = async (
 };
 
 /**
- * postsテーブルから記事を取得する
  * @returns Post[]
  */
 export const selectPosts = async () => {
@@ -83,7 +77,6 @@ export const selectPosts = async () => {
 };
 
 /**
- * postsテーブルから記事を１件取得する
  * @param slug 記事のID
  * @returns Post|null
  */
