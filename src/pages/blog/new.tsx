@@ -10,19 +10,20 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 const Page = () => {
     const [categoryName, setCategoryName] = useState("");
+    // **** START [記事の追加フォームで使用する] ****
     const [categories, setCategories] = useState<Category[]>([]);
     const [categoryId, setCategoryId] = useState(0);
     const [postTitle, setPostTitle] = useState("");
     const [postBody, setPostBody] = useState("");
     const [postEyecatchUrl, setPostEyecatchUrl] = useState("");
+    // ↑↑追加↑↑
 
     const fetchCategories = async () => {
         const data = await selectCategories();
         setCategories([...data]);
         setCategoryId(data.length === 0 ? 0 : data[0].id);
     };
-
-
+    // **** END ****
 
     const onChangeCategoryName = (e: ChangeEvent<HTMLInputElement>) => {
         setCategoryName(e.target.value);
@@ -38,6 +39,7 @@ const Page = () => {
         fetchCategories();
     };
 
+    // **** START [記事の追加フォームで使用する] ****
     useEffect(() => {
         if (categoryName.length === 0) {
             fetchCategories();
@@ -51,12 +53,12 @@ const Page = () => {
     const onChangePosttitle = (e: ChangeEvent<HTMLInputElement>) => {
         setPostTitle(e.target.value);
     };
-
+    // ↑↑追加↑↑
 
     const onChangePostBody = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setPostBody(e.target.value);
     };
-
+    // ↑↑追加↑↑
 
     const onChangeEyecatch = async (e: ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) {
@@ -72,7 +74,7 @@ const Page = () => {
             alert("アップロードに失敗しました");
         }
     };
-
+    // ↑↑追加↑↑
 
     const onSubmitInsertPost = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -94,7 +96,8 @@ const Page = () => {
             alert("記事の投稿に失敗しました");
         }
     };
-
+    // ↑↑追加↑↑
+    // **** END ****
 
     return (
         <Layout>

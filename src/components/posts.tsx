@@ -4,8 +4,8 @@ import Link from "next/link";
 import { FC } from "react";
 
 type Props = {
-    posts: Post[]
-}
+    posts: Post[];
+};
 
 const Posts: FC<Props> = ({ posts }) => {
     return (
@@ -15,7 +15,18 @@ const Posts: FC<Props> = ({ posts }) => {
                     <article key={slug}>
                         <Link href={`/blog/${slug}`}>
                             <figure>
-                                <Image src={eyecatch} alt="" width={576} height={288} className="w-full" />
+                                <Image
+                                    src={
+                                        eyecatch
+                                            ? `https://puvgtufvrywnimyrntkc.supabase.co/storage/v1/object/public/public-image-bucket/${eyecatch}`
+                                            : "/images/eyecatch.jpg"
+                                    }
+                                    alt=""
+                                    width={576}
+                                    height={288}
+                                    className="w-full"
+                                />
+                                {/* ↑↑修正↑↑ */}
                             </figure>
                             <h2 className="text-2xl font-normal">{title}</h2>
                         </Link>
@@ -23,8 +34,7 @@ const Posts: FC<Props> = ({ posts }) => {
                 ))}
             </div>
         </div>
-
     );
-}
+};
 
 export default Posts;

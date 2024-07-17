@@ -9,7 +9,8 @@ type Props = {
 const PostHeader: FC<Props> = ({ post }) => {
     const dt = new Date(post.created_at);
     const year = dt.getFullYear();
-    const month = dt.getMonth();
+    const month = dt.getMonth() + 1;
+    // ↑↑修正↑↑
     const day = dt.getDate();
 
     return (

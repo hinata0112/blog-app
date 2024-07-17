@@ -35,13 +35,14 @@ export const selectCategories = async () => {
 export const uploadEyecatchImage = async (uploadFile: File) => {
     const { data, error } = await supabase.storage
         .from("thumbnails")
+        // .from("public-image-bucket")
         .upload(`imgs/${uploadFile.name}`, uploadFile, {
             cacheControl: "3600",
             upsert: false,
         });
+    console.log(error)
     return data ? data.path : error;
 };
-
 
 /**
  * postsテーブルに記事を追加する
@@ -65,4 +66,30 @@ export const insertPost = async (
     const { error } = await supabase.from("posts").insert(data);
     console.log(error);
     return error;
+};
+
+/**
+ * postsテーブルから記事を取得する
+ * @returns Post[]
+ */
+export const selectPosts = async () => {
+    const { data, error } = await supabase.from("posts").select();
+    console.log(data ? data : error);
+    if (data) {
+        return data.map((post) => ({ ...post, slug: post.id, eyecatch: post.eyecatch_url }));
+    } else {
+        return [];
+    }
+};
+
+/**
+ * postsテーブルから記事を１件取得する
+ * @param slug 記事のID
+ * @returns Post|null
+ */
+export const selectPost = async (slug: string) => {
+    const { data, error } = await supabase.from("posts").select().eq("id", slug).limit(1);
+    console.log(data, error);
+
+    return data && data.length !== 0 ? { ...data[0], eyecatch: data[0].eyecatch_url } : null;
 };
